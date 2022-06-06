@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="shortcut icon" href="/images/favicon-32x32.png" type="image/png" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css" />
+  <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css" />
+  <link rel="stylesheet" href="/css/app.css" type="text/css" />
+  <style>
+     .bg-primary, .btn-primary {
+      /* background-image: linear-gradient(45deg, #e91e63, #f44336) !important; */
+      /* border-color: #f44336; */
+      background-color: rgb(6, 114, 236);
+      border-color: rgb(6, 114, 236);
+    }
+    .text-primary {
+      color: #3f51b5 !important;
+    } 
+    body {
+      background-position: center center;
+    }
+    a.card {
+      text-decoration: none;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      position: relative;
+      top: 0;
+      height: 100vh;
+    }
+    .sidenav-toggle-button, .sidenav-toggle-button:hover {
+      background-color: transparent;
+    }
+    .sidenav a {
+      line-height: 2rem;
+      background-color: transparent;
+    }
+    .sidenav a:hover {
+      text-decoration: none;
+      background-color: rgba(200, 200, 200, 0.2);
+    }
+    .sidenav a .fa, .nav .fa {
+      font-size: 18px;
+      float: left;
+      margin-right: 10px;
+      line-height: 2rem;
+      width: 30px;
+      text-align: center;
+    }
+    .nav-link.dropdown-toggle {
+      outline: none;
+      background: transparent;
+      border: none;
+    }
+    #nav-dropdown::after {
+      top: 0.255em;
+      position: relative;
+    }
+    .logo-text {
+      font-size: 1.8rem;
+      text-decoration: none !important;
+      padding: 0.5rem 0.5rem !important;
+    }
+  </style>
+  <title><%= appname %></title>
+</head>
+<body>
+  <div class="container" style="max-width: 960px;">
+    <div class="row font-weight-bold">
+      <div class="text-center col-12">
+        <h2 class="my-4">Salary Slip</h2>
+      </div>
+      <div class="col-6 form-group">
+        <label>Employee Name</label>
+        <input disabled class="form-control" value='<%= salary.employee_name %>'>
+      </div>
+      <div class="col-6 form-group">
+        <label>Grade</label>
+        <input disabled class="form-control" value='<%= salary.grade_name %>'>
+      </div>
+      <div class="col-6 form-group">
+        <label>Salary Period</label>
+        <input disabled class="form-control" value='<%= salary.salary_period %>'>
+      </div>
+      <div class="col-6 form-group">
+        <label>Date of Payment</label>
+        <input disabled class="form-control" value='<%= salary.date_of_payment %>'>
+      </div>
+      <div class="col-12">
+        <table class="table table-bordered">
+          <tr>
+            <td colspan="2">Earnings</td>
+            <td colspan="2">Deductions</td>
+          </tr>
+          <tr>
+            <td>Basic: </td> <td><input disabled type="number" class="form-control" value='<%= salary.grade.basic_salary %>'></td>
+            <td>Tax: </td> <td><input disabled type="number" class="form-control" value='<%= salary.grade.tax %>'></td>
+          </tr>
+          <tr>
+            <td>Housing: </td> <td><input disabled type="number" class="form-control" value='<%= salary.grade.housing_allowance %>'></td>
+            <td>Deduction: </td> <td><input disabled type="number" class="form-control" value='<%= salary.deduction %>'></td>
+          </tr>
+          <tr>
+            <td>Medical: </td> <td><input disabled type="number" class="form-control" value='<%= salary.grade.medical_allowance %>'></td>
+            <td>Others: </td> <td><input disabled type="number" class="form-control" value="--"></td>
+          </tr>
+          <tr>
+            <td>Transport: </td> <td><input disabled type="number" class="form-control" value='<%= salary.grade.transport_allowance %>'></td>
+            <td></td> <td></td>
+          </tr>
+          <tr>
+            <td>Bonus: </td> <td><input disabled type="number" class="form-control" value='<%= salary.bonus %>'></td>
+            <td></td> <td></td>
+          </tr>
+          <tr>
+            <td>Total (NGN): </td> <td><input disabled type="number" class="form-control" value='<%= salary.grade.basic_salary + salary.grade.medical_allowance + salary.grade.housing_allowance + salary.grade.transport_allowance + salary.bonus %>'></td>
+            <td>Total (NGN): </td> <td><input disabled type="number" class="form-control" value='<%= salary.grade.tax + salary.deduction %>'></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+</div>
+
+<%- include ('partials/bottom') %>

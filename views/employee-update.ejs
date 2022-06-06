@@ -1,0 +1,110 @@
+<%-include ("partials/top") %>
+<div class="row space">
+  <div class="col-12">
+    <div class="d-flex justify-content-between align-items-center border-bottom pb-2">
+      <h4 class="page-title">Create Employee</h4>
+    </div>
+  </div> 
+</div>
+
+<div class="row space">
+<div class="col-12">
+
+<form action="employees/update" method="POST" enctype="multipart/form-data" class="card">
+
+  <fieldset class="row card-body">
+    <legend>Personal Detail</legend>
+    <div class="form-group col-md-4">
+      <label>Surname: <strong class="text-danger">*</strong></label>
+      <input required type="text" class="form-control" name="surname" value='<%= employee.surname %>' />
+    </div>
+    <div class="form-group col-md-4">
+      <label>Other Names: <strong class="text-danger">*</strong></label>
+      <input required type="text" class="form-control" name="other_names" value='<%= employee.other_names %>' />
+    </div>
+    <div class="form-group col-md-4">
+      <label>Phone: <strong class="text-danger">*</strong></label>
+      <input type="text" class="form-control" name="phone" value='<%= employee.phone %>' />
+    </div>
+    <div class="form-group col-md-4">
+      <label>Address: <strong class="text-danger">*</strong></label>
+      <input type="text" class="form-control" name="address" value='<%= employee.address %>' />
+    </div>
+  </fieldset>
+  <fieldset class="row card-body">
+    <legend>Portfolio</legend>
+    <div class="form-group col-md-4">
+      <label>Grade: <strong class="text-danger">*</strong></label>
+      <select required class="form-control" name="grade">
+        <option value="">-- select grade level --</option>
+        <% grades.forEach(g => { %>
+          <% if (g._id == employee.grade) { %>
+            <option selected value='<%= g._id %>'><%= g.grade_name %></option>
+          <% } else { %>
+            <option value='<%= g._id %>'><%= g.grade_name %></option>
+          <% } %>
+        <% }) %>
+      </select>
+    </div>
+    <div class="form-group col-md-4">
+      <label>Position: <strong class="text-danger">*</strong></label>
+      <input type="text" class="form-control" name="position" value='<%= employee.position %>' />
+    </div>
+    <div class="form-group col-md-4">
+      <label>Qualification: <strong class="text-danger">*</strong></label>
+      <select required class="form-control" name="qualification">
+        <option value="">-- select education qualification --</option>
+        <option selected><%= employee.qualification %></option>
+        <option>O' Level</option>
+        <option>O.N.D</option>
+        <option>H.N.D</option>
+        <option>B.Sc, B.Eng, B.A</option>
+        <option>Masters</option>
+        <option>Ph.D</option>
+      </select>
+    </div>
+    <div class="form-group col-md-4">
+      <label>Date Joined: <strong class="text-danger">*</strong></label>
+      <input type="date" class="form-control" name="date_joined" value='<%= employee.date_joined %>' />
+    </div>
+  </fieldset>
+  <fieldset class="row card-body">
+    <legend>Salary Bank Detail</legend>
+    <div class="form-group col-md-4">
+      <label>Bank Name: <strong class="text-danger">*</strong></label>
+      <input type="text" class="form-control" name="bank_name" value='<%= employee.bank_name %>' />
+    </div>
+    <div class="form-group col-md-4">
+      <label>Account Name: <strong class="text-danger">*</strong></label>
+      <input type="text" class="form-control" name="account_name" value='<%= employee.account_name %>' />
+    </div>
+    <div class="form-group col-md-4">
+      <label>Account Number: <strong class="text-danger">*</strong></label>
+      <input type="text" class="form-control" name="account_number" value='<%= employee.account_number %>' />
+    </div>
+  </fieldset>
+  <fieldset class="row card-body">
+    <div class="form-group col-md-4">
+      <label>Employment Status: <strong class="text-info">*</strong></label>
+      <select required class="form-control" name="status">
+        <option value="">-- select status --</option>
+        <option selected><%= employee.status %></option>
+        <option>Active</option>
+        <option>Resigned</option>
+        <option>Sacked</option>
+        <option>Inactive</option>
+      </select>
+    </div>
+    <div class="form-group col-md-4">
+      <label>Employee Photo: </label>
+      <input type="file" class="form-control" name="photo" accept=".jpg,.png" />
+    </div>
+  </fieldset>
+  <div class="form-group mt-4">
+    <button class="btn btn-primary form-control" type="submit">Update</button>
+  </div>
+</form>
+
+<script>
+
+<%-include ("partials/bottom") %>

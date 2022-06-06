@@ -1,0 +1,70 @@
+<%-include ("partials/top") %>
+<div class="row space">
+  <div class="col-12">
+    <div class="text-center pb-2">
+      <h4 class="page-title">Enter Salary</h4>
+      <form action="/salaries/new" method="GET">
+        <div class="form-group col-lg-4 offset-lg-4 col-md-6 offset-md-3 justify-content-center">
+          <label>Select Employee: <strong class="text-danger">*</strong></label>
+          <select required class="form-control" name="employee_id">
+            <option value="">-- select employee --</option>
+            <% employees.forEach(emp => { %>
+              <option value='<%= emp._id %>'><%= emp.serial_number + " - " + emp.surname + " " + emp.other_names %></option>
+            <% }) %>
+          </select>
+        </div>
+        <div>
+          <button class="btn btn-info mx-auto">Fetch Salary Details</button>
+        </div>
+      </form>
+    </div>
+  </div> 
+</div>
+
+<% if (employee) { %>
+<div class="row space">
+<div class="col-12">
+
+<form action="/salaries/new" method="POST" class="card">
+  <input type="hidden" name="employee_id" value='<%= employee.serial_number %>'>
+  <input type="hidden" name="employee_name" value='<%= employee.surname + " " + employee.other_names %>'>
+  <input type="hidden" name="grade" value='<%= employee.grade._id %>'>
+  <input type="hidden" name="grade_name" value='<%= employee.grade.grade_name %>'>
+  <fieldset class="row card-body">
+    <div class="form-group col-md-4">
+      <label>Employee Name: </label>
+      <input disabled class="form-control" value='<%= employee.surname + " " + employee.other_names %>' />
+    </div>
+    <div class="form-group col-md-4">
+      <label>Grade Level: </label>
+      <input disabled class="form-control" value='<%= employee.grade.grade_name %>' />
+    </div>
+    <div class="form-group col-md-4">
+      <label>Salary Period: <strong class="text-danger">*</strong></label>
+      <input required type="month" class="form-control" name="salary_period" />
+    </div>
+    <div class="form-group col-md-4">
+      <label>Bonus (NGN): <strong class="text-danger">*</strong></label>
+      <input type="number" class="form-control" name="bonus" />
+    </div>
+    <div class="form-group col-md-4">
+      <label>Deduction (NGN): <strong class="text-danger">*</strong></label>
+      <input type="number" class="form-control" name="deduction" />
+    </div>
+    <div class="form-group col-md-4">
+      <label>Date of Payment (NGN): <strong class="text-danger">*</strong></label>
+      <input type="date" class="form-control" name="date_of_payment" />
+    </div>
+  </fieldset>
+  
+  <div class="form-group mt-4">
+    <button class="btn btn-primary form-control" type="submit">Submit</button>
+  </div>
+</form>
+
+</div>
+</div>
+
+<% } %>
+
+<%-include ("partials/bottom") %>
